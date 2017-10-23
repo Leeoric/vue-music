@@ -1,4 +1,5 @@
 # vue-music
+<<<<<<< HEAD
 
 > music player
 
@@ -19,3 +20,6 @@ npm run build --report
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+=======
+A vue project like QQ music
+>>>>>>> 2b815507e425d5a035e9227532598f12b7898b09
