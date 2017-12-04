@@ -7,7 +7,7 @@
       <li v-for="group in data" class="list-group" ref="listGroup">
         <h2 class="list-group-title">{{group.title}}</h2>
         <ul>
-          <li v-for="item in group.items" class="list-group-item">
+          <li @click="selectItem(item)" v-for="item in group.items" class="list-group-item">
             <img v-lazy="item.avatar" class="avatar">
             <span class="name">{{item.name}}</span>
           </li>
@@ -16,7 +16,10 @@
     </ul>
     <div class="list-shortcut">
       <ul>
-        <li v-for="(item, index) in shortcutList" class="item" :data-index="index" @touchStart="onShortcutTouchStart">
+        <li v-for="(item, index) in shortcutList"
+            class="item"
+            :data-index="index"
+            @touchStart="onShortcutTouchStart">
           {{item}}
         </li>
       </ul>
@@ -46,7 +49,17 @@
       PullTo
     },
     methods: {
+      selectItem(item) {
+        this.$emit('select', item)
+      },
       onShortcutTouchStart(e) {
+        // 判断默认行为是否可以被禁用
+        if (e.cancelable) {
+          // 判断默认行为是否已经被禁用
+          if (!e.defaultPrevented) {
+            e.preventDefault()
+          }
+        }
         let anchorInddex = getData(e.target, 'index')
         console.log(anchorInddex)
         /* this.scrollToElement(this.$refs.listview, this.$refs.listGroup[anchorInddex]) */
